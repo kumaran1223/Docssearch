@@ -1,0 +1,22 @@
+{
+  "name": "docssearch",
+  "version": "1.0.0",
+  "description": "AI-Powered Marketing Knowledge Discovery Platform",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "seed": "cd backend && npm run seed",
+    "build": "cd frontend && npm run build",
+    "lint": "concurrently \"cd backend && npm run lint\" \"cd frontend && npm run lint\"",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down"
+  },
+  "keywords": ["ai", "search", "knowledge-management", "gemini", "react", "mongodb"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+
