@@ -1,0 +1,44 @@
+# Deployment Configuration Reference
+# This file documents the correct build and start commands for various platforms
+
+# ===== ROOT LEVEL DEPLOYMENT =====
+# Use these when deploying from the repository root
+
+BUILD_COMMAND="npm install && cd frontend && npm install && npm run build"
+START_COMMAND="cd backend && npm install && npm start"
+INSTALL_COMMAND="npm install && cd backend && npm install && cd ../frontend && npm install"
+
+# ===== FRONTEND ONLY DEPLOYMENT =====
+# Use these when deploying only the frontend (e.g., Netlify, Vercel)
+
+FRONTEND_BUILD_COMMAND="cd frontend && npm install && npm run build"
+FRONTEND_PUBLISH_DIR="frontend/dist"
+FRONTEND_BASE_DIR="frontend"
+
+# ===== BACKEND ONLY DEPLOYMENT =====
+# Use these when deploying only the backend (e.g., Railway, Render)
+
+BACKEND_BUILD_COMMAND="cd backend && npm install"
+BACKEND_START_COMMAND="cd backend && npm start"
+BACKEND_BASE_DIR="backend"
+
+# ===== ENVIRONMENT VARIABLES REQUIRED =====
+
+# Backend:
+# MONGODB_URI - MongoDB Atlas connection string
+# GEMINI_API_KEY - Google Gemini API key
+# JWT_SECRET - Random secret key (min 32 characters)
+# NODE_ENV - Set to "production"
+# PORT - Port number (usually 5000 or auto-assigned)
+# FRONTEND_URL - Frontend URL for CORS (or "*" to allow all)
+
+# Frontend:
+# VITE_API_URL - Backend API URL (e.g., https://api.yourdomain.com)
+
+# ===== HEALTH CHECK =====
+HEALTH_CHECK_PATH="/api/health"
+HEALTH_CHECK_INTERVAL=30
+
+# ===== NODE VERSION =====
+NODE_VERSION="18.x"
+
