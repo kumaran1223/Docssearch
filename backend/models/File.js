@@ -59,8 +59,6 @@ const fileSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    enum: ['Campaigns', 'Research', 'Strategy', 'Budget', 'Creative', 'Analytics', 
-           'Legal', 'Contracts', 'Meeting Notes', 'Reports', 'Uncategorized'],
     default: 'Uncategorized',
     index: true
   },

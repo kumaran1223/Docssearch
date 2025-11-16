@@ -9,6 +9,7 @@ import {
   CheckIcon
 } from '@heroicons/react/24/outline';
 import {
+  getCategories,
   getCategoryBreakdown,
   getFiles,
   deleteFile,
@@ -51,7 +52,7 @@ export default function Categories() {
 
   const loadCategories = async () => {
     try {
-      const data = await getCategoryBreakdown();
+      const data = await getCategories();
       setCategories(data);
     } catch (error) {
       console.error('Error loading categories:', error);
