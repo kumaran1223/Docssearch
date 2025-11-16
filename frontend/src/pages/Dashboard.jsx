@@ -27,18 +27,23 @@ export default function Dashboard() {
   const loadDashboardData = async () => {
     try {
       const [statsData, categoriesData, uploadsData, searchesData] = await Promise.all([
-        getStats(),
-        getCategoryBreakdown(),
-        getRecentUploads(5),
-        getRecentSearches(5),
+        getStats().catch(() => ({ totalFiles: 0, totalSearches: 0, totalCategories: 0, totalStorage: 0 })),
+        getCategoryBreakdown().catch(() => []),
+        getRecentUploads(5).catch(() => []),
+        getRecentSearches(5).catch(() => []),
       ]);
 
       setStats(statsData);
-      setCategories(categoriesData);
-      setRecentUploads(uploadsData);
-      setRecentSearches(searchesData);
+      setCategories(Array.isArray(categoriesData) ? categoriesData : []);
+      setRecentUploads(Array.isArray(uploadsData) ? uploadsData : []);
+      setRecentSearches(Array.isArray(searchesData) ? searchesData : []);
     } catch (error) {
       console.error('Error loading dashboard:', error);
+      // Set default values on error
+      setStats({ totalFiles: 0, totalSearches: 0, totalCategories: 0, totalStorage: 0 });
+      setCategories([]);
+      setRecentUploads([]);
+      setRecentSearches([]);
     } finally {
       setLoading(false);
     }

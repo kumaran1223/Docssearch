@@ -26,10 +26,13 @@ export default function Search() {
     const fetchCategories = async () => {
       try {
         const data = await getCategories();
-        const categoryNames = data.map(cat => cat.category);
-        setCategories(['All', ...categoryNames]);
+        if (Array.isArray(data)) {
+          const categoryNames = data.map(cat => cat.category);
+          setCategories(['All', ...categoryNames]);
+        }
       } catch (error) {
         console.error('Failed to fetch categories:', error);
+        setCategories(['All']);
       }
     };
 

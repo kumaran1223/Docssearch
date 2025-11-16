@@ -53,9 +53,10 @@ export default function Categories() {
   const loadCategories = async () => {
     try {
       const data = await getCategories();
-      setCategories(data);
+      setCategories(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error loading categories:', error);
+      setCategories([]);
     } finally {
       setLoading(false);
     }
